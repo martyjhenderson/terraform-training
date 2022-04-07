@@ -8,14 +8,19 @@ tasks:
       tfenv use min-required && \
       cd $GITPOD_REPO_ROOT && \ 
       gp sync-done tfinstall
-  - name: Init Terraform and TFlint
+  - name: Init TFlint
     command: |
       gp sync-await tfinstall && \
       cd $GITPOD_REPO_ROOT/terraform && \
-      terraform init && \
       tflint --init && \
       cd $GITPOD_REPO_ROOT
 
 vscode:
   extensions:
     - hashicorp.terraform
+
+github:
+  prebuilds:
+    master: true
+    pullRequests: true
+    addComment: true
