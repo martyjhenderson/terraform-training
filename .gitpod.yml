@@ -1,15 +1,20 @@
+image:
+  file: .gitpod.Dockerfile
 tasks:
-  - name: Install Terraform and TFLint
+  - name: Install Terraform
     command: |
-      brew install tfenv && \
       cd $GITPOD_REPO_ROOT/terraform && \
       tfenv install min-required && \
       tfenv use min-required && \
-      brew install tflint && \
+      cd $GITPOD_REPO_ROOT && \ 
+      gp sync-done tfinstall
+  - name: Init Terraform and TFlint
+    command: |
+      gp sync-await tfinstall && \
+      cd $GITPOD_REPO_ROOT/terraform && \
+      terraform init && \
       tflint --init && \
       cd $GITPOD_REPO_ROOT
-  - name: Install AWS CLI
-    command: brew install awscli
 
 vscode:
   extensions:
