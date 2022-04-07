@@ -19,3 +19,9 @@ tasks:
 vscode:
   extensions:
     - hashicorp.terraform
+
+github:
+  prebuilds:
+    master: true
+    pullRequests: true
+    addComment: true
