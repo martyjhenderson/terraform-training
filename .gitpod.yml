@@ -1,0 +1,16 @@
+tasks:
+  - name: Install Terraform and TFLint
+    command: |
+      brew install tfenv && \
+      cd $GITPOD_REPO_ROOT/terraform && \
+      tfenv install min-required && \
+      tfenv use min-required && \
+      brew install tflint && \
+      tflint --init && \
+      cd $GITPOD_REPO_ROOT
+  - name: Install AWS CLI
+    command: brew install awscli
+
+vscode:
+  extensions:
+    - hashicorp.terraform
